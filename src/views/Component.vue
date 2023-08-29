@@ -1,0 +1,143 @@
+<template>
+  <div>
+    <b-container>
+      <div class="d-flex">
+        <b-button @click="onBackClick" class="my-3" variant="outline-primary"
+          >Back</b-button
+        >
+      </div>
+      <b-row>
+        <b-col sm="8" md="6" lg="5">
+          <h4
+            class="text-left text-dark mb-4"
+            v-if="$route.path !== '/Component'"
+          >
+            Comments
+          </h4>
+          <h4 class="text-left text-color mb-4" v-else>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="25"
+              height="25"
+              fill="currentColor"
+              class="bi bi-chat-fill text-color mx-1"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z"
+              /></svg
+            >Account Comments
+          </h4>
+          <div class="account-scrollbar bg-light">
+            <div class="d-flex px-2 py-2">
+              <div class="d-flex">
+                <svg
+                  v-b-modal.modal-sm
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25"
+                  height="25"
+                  fill="currentColor"
+                  class="bi bi-plus-square add-icon text-color"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
+                  />
+                  <path
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                  />
+                </svg>
+                <label v-b-modal.modal-sm class="text-color px-2"
+                  >Add new comment</label
+                >
+              </div>
+              <button class="btn btn-sm btn-primary mx-4 mx-md-5 mb-3">
+                Save
+              </button>
+            </div>
+            <Comments
+              class="mt-3 mt-md-3 mt-lg-0"
+              v-for="(comment, index) in comments"
+              :key="index"
+              :name="comment.name"
+              :description="comment.description"
+              :date="comment.date"
+            />
+          </div>
+        </b-col>
+      </b-row>
+    </b-container>
+  </div>
+</template>
+
+<script>
+import Comments from "../components/Comments.vue";
+
+export default {
+  name: "Component",
+  components: {
+    Comments,
+  },
+  data() {
+    return {
+      comments: [
+        {
+          name: "alee",
+          description: "Reached out to bob today about this thing",
+          date: "28/08/2023 6:12pm",
+        },
+        {
+          name: "alee",
+          description:
+            "Reached out to bob today about this thing Reached out to bob today about this thing Reached out to bob today about this thing ",
+          date: "28/08/2023 6:12pm",
+        },
+        {
+          name: "alee",
+          description: "Reached out to bob today about this thing",
+          date: "28/08/2023 6:12pm",
+        },
+        {
+          name: "alee",
+          description: "Reached out to bob today about this thing",
+          image: "",
+          date: "28/08/2023 6:12pm",
+        },
+        {
+          name: "alee",
+          description:
+            "Reached out to bob today about this thing Reached out to bob today about this thing",
+          image: "",
+          date: "28/08/2023 6:12pm",
+        },
+        {
+          name: "alee",
+          description:
+            "Reached out to bob today about this thing Reached out to bob today about this thing Reached out to bob today about this thing",
+          image: "",
+          date: "28/08/2023 6:12pm",
+        },
+      ],
+    };
+  },
+  methods: {
+    onBackClick() {
+      this.$router.push("/");
+    },
+  },
+};
+</script>
+
+<style scoped>
+.add-icon:focus {
+  outline: none !important;
+}
+.account-scrollbar {
+  height: 600px;
+  overflow: auto;
+}
+::-webkit-scrollbar-thumb {
+  background: red;
+  border-radius: 10px;
+}
+</style>
