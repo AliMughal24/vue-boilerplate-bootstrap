@@ -15,7 +15,7 @@
           <hr />
           <h4
             class="text-left text-dark mb-4"
-            v-if="$route.path !== '/Component'"
+            v-if="$route.path !== '/Comment'"
           >
             Comments
           </h4>
@@ -96,7 +96,7 @@
 import Comments from "../components/Comments.vue";
 
 export default {
-  name: "Component",
+  name: "Comment",
   components: {
     Comments,
   },
@@ -155,7 +155,19 @@ export default {
   outline: none !important;
 }
 .account-scrollbar {
-  height: 600px;
-  overflow: auto;
+  height: 600px !important;
+  overflow: auto !important;
+}
+::-webkit-scrollbar {
+  width: 10px !important;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px !important;
+}
+::-webkit-scrollbar-thumb {
+  background: #6697e0 !important;
+  border-radius: 10px !important;
 }
 </style>

@@ -1,8 +1,11 @@
 <template>
   <div>
-    <h4>Score</h4>
-
-    <b-form-rating id="rating-inline reviews" inline></b-form-rating>
+    <p>Score</p>
+    <b-form-rating
+      id="rating-inline reviews"
+      :value="review"
+      inline
+    ></b-form-rating>
   </div>
 </template>
 <script>
@@ -11,12 +14,13 @@ export default {
   data() {
     return {};
   },
+  props: ["review"],
 };
 </script>
 
 <style scoped>
 .form-control {
-  margin-top: 65px;
+  margin-top: 35px;
   border: none !important;
 }
 .form-control:focus {
