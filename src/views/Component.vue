@@ -6,8 +6,13 @@
           >Back</b-button
         >
       </div>
-      <b-row>
+      <b-row class="justify-content-center">
         <b-col sm="8" md="6" lg="5">
+          <p class="text-dark mb-0">Rating</p>
+          <b-form-rating id="rating-inline reviews" inline></b-form-rating>
+          <p class="text-dark">Risk Factor:Medium</p>
+
+          <hr />
           <h4
             class="text-left text-dark mb-4"
             v-if="$route.path !== '/Component'"
@@ -135,9 +140,5 @@ export default {
 .account-scrollbar {
   height: 600px;
   overflow: auto;
-}
-::-webkit-scrollbar-thumb {
-  background: red;
-  border-radius: 10px;
 }
 </style>
