@@ -59,6 +59,23 @@
               <button class="btn btn-sm btn-primary mx-4 mx-md-5 mb-3">
                 Save
               </button>
+              <b-modal id="modal-sm" size="sm" title="Rating feedback">
+                <div class="">
+                  <label for="rating-inline">Reviews:</label>
+                  <b-form-rating
+                    class=""
+                    id="rating-inline reviews"
+                    inline
+                  ></b-form-rating>
+                </div>
+                <b-form-textarea
+                  class="text-dark mt-2 border"
+                  id="textarea-no-resize"
+                  placeholder="textarea"
+                  rows="3"
+                  no-resize
+                ></b-form-textarea>
+              </b-modal>
             </div>
             <Comments
               class="mt-3 mt-md-3 mt-lg-0"

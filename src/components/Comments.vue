@@ -24,23 +24,6 @@
         <span>{{ description }}</span>
       </div>
     </div>
-    <b-modal id="modal-sm" size="sm" title="Rating feedback">
-      <div class="">
-        <label for="rating-inline">Reviews:</label>
-        <b-form-rating
-          class=""
-          id="rating-inline reviews"
-          inline
-        ></b-form-rating>
-      </div>
-      <b-form-textarea
-        class="text-dark mt-2 border"
-        id="textarea-no-resize"
-        placeholder="textarea"
-        rows="3"
-        no-resize
-      ></b-form-textarea>
-    </b-modal>
   </div>
 </template>
 
