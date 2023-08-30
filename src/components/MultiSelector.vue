@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1 class="text-dark text-left">Owner/Client</h1>
-    <div class="">
-      <label class="typo__label text-dark d-flex">Name</label>
+    <p class="typo__label text-dark text-left">Name</p>
+
+    <div>
       <div class="d-flex align-items-end">
         <multiselect
           class="multiSelector"
@@ -11,10 +11,10 @@
           :searchable="false"
           :close-on-select="false"
           :show-labels="false"
-          placeholder="Pick a value"
+          placeholder="Pick a name"
         ></multiselect>
-
         <svg
+          @click="addUser"
           class="px-2"
           xmlns="http://www.w3.org/2000/svg"
           height="1em"
@@ -26,6 +26,7 @@
           />
         </svg>
         <svg
+          @click="removeUser()"
           class="pl-1"
           xmlns="http://www.w3.org/2000/svg"
           height="1em"
@@ -53,21 +54,24 @@ export default {
     return {
       value: "",
       options: [
-        "Select option",
-        "options",
-        "selected",
-        "multiple",
-        "label",
-        "searchable",
-        "clearOnSelect",
-        "hideSelected",
-        "maxHeight",
-        "allowEmpty",
-        "showLabels",
-        "onChange",
-        "touched",
+        "Sarah Johnson",
+        "Michael Smith",
+        "Emily Davis",
+        "Christopher Brown",
+        "Jessica Wilson",
       ],
     };
+  },
+  methods: {
+    addUser() {
+      console.log("1111");
+      this.$emit("add-show");
+    },
+    removeUser() {
+      console.log("222");
+
+      this.$emit("removeShow");
+    },
   },
 };
 </script>
