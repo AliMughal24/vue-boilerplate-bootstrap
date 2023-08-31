@@ -1,7 +1,5 @@
 <template>
   <div>
-    <p class="typo__label text-dark text-left">Name</p>
-
     <div>
       <div class="d-flex align-items-end">
         <multiselect
@@ -64,12 +62,9 @@ export default {
   },
   methods: {
     addUser() {
-      console.log("1111");
       this.$emit("add-show");
     },
     removeUser() {
-      console.log("222");
-
       this.$emit("removeShow");
     },
   },

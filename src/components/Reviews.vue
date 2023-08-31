@@ -1,7 +1,7 @@
 <template>
   <div>
-    <p>Score</p>
     <b-form-rating
+      class="review-rating"
       id="rating-inline reviews"
       :value="review"
       inline

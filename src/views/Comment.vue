@@ -9,9 +9,17 @@
       <b-row class="justify-content-center">
         <b-col sm="8" md="6" lg="5">
           <p class="text-dark mb-0">Rating</p>
-          <b-form-rating id="rating-inline reviews" inline></b-form-rating>
-          <p class="text-dark">Risk Factor:Medium</p>
-
+          <div>
+            <b-form-rating
+              v-model="selectedRating"
+              @change="filterReviews"
+              id="rating-inline reviews"
+              inline
+            ></b-form-rating>
+            <div v-for="review in filteredReviews" :key="review.id">
+              <p class="text-dark">{{ review.text }}</p>
+            </div>
+          </div>
           <hr />
           <h4
             class="text-left text-dark mb-4"
@@ -78,7 +86,7 @@
               </b-modal>
             </div>
             <Comments
-              class="mt-3 mt-md-3 mt-lg-0"
+              class="my-3"
               v-for="(comment, index) in comments"
               :key="index"
               :name="comment.name"
@@ -102,6 +110,15 @@ export default {
   },
   data() {
     return {
+      reviews: [
+        { id: 1, rating: 1, text: "Risk factor:high" },
+        { id: 2, rating: 2, text: "Risk factor:high" },
+        { id: 2, rating: 3, text: "Risk factor:medium" },
+        { id: 2, rating: 4, text: "Risk factor:medium" },
+        { id: 2, rating: 5, text: "Risk factor:low" },
+      ],
+      selectedRating: "",
+      filteredReviews: [],
       comments: [
         {
           name: "alee",
@@ -143,6 +160,11 @@ export default {
     };
   },
   methods: {
+    filterReviews() {
+      this.filteredReviews = this.reviews.filter(
+        (review) => review.rating === this.selectedRating
+      );
+    },
     onBackClick() {
       this.$router.push("/");
     },

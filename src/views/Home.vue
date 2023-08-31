@@ -7,37 +7,54 @@
     </div>
     <div v-for="(project, index) in projects" :key="index">
       <h4 class="text-dark text-left mt-3">{{ project.role }}</h4>
-      <div v-for="(user, index) in project.users" :key="index">
-        <b-row class="my-4">
-          <b-col sm="8" md="6" lg="5">
+      <b-row class="my-4">
+        <b-col sm="8" md="6" lg="5">
+          <p class="typo__label text-dark text-left">Name</p>
+
+          <div
+            v-for="(user, userIndex) in project.users"
+            :key="userIndex"
+            class="user-list"
+          >
             <MultiSelector
               @add-show="addUser(index)"
-              @removeShow="removeUser(index)"
+              @removeShow="removeUser(index, userIndex)"
               class="mt-3"
-          /></b-col>
-          <b-col sm="8" md="6" lg="2">
-            <Reviews :review="user.review" class="mt-4 mt-md-0" /></b-col
-          ><b-col sm="8" md="6" lg="5">
-            <p
-              class="text-left text-dark mb-4"
-              v-if="$route.path !== '/Comment'"
+            /></div
+        ></b-col>
+        <b-col sm="8" md="6" lg="2">
+          <p class="mb-">Score</p>
+
+          <div
+            v-for="(user, userIndex) in project.users"
+            :key="userIndex"
+            class="user-list"
+          >
+            <Reviews :review="user.review" class="mt-4 mt-md-0" /></div></b-col
+        ><b-col sm="8" md="6" lg="5">
+          <p class="text-left text-dark" v-if="$route.path !== '/Comment'">
+            Comments
+          </p>
+          <h4 class="text-left text-color mb-4" v-else>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="25"
+              height="25"
+              fill="currentColor"
+              class="bi bi-chat-fill text-color mx-1"
+              viewBox="0 0 16 16"
             >
-              Comments
-            </p>
-            <h4 class="text-left text-color mb-4" v-else>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="25"
-                height="25"
-                fill="currentColor"
-                class="bi bi-chat-fill text-color mx-1"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z"
-                /></svg
-              >Account Comments
-            </h4>
+              <path
+                d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z"
+              /></svg
+            >Account Comments
+          </h4>
+
+          <div
+            v-for="(user, userIndex) in project.users"
+            :key="userIndex"
+            class="user-list"
+          >
             <div class="d-flex">
               <div class="d-flex">
                 <svg
@@ -64,16 +81,35 @@
                 Save
               </button>
             </div>
-
             <Comments
               class="mt-3 mt-md-3 mt-lg-0"
               v-for="(comment, index) in user.comments"
               :key="index"
               :name="comment.name"
               :description="comment.description"
-              :date="comment.date" /></b-col
-        ></b-row>
-      </div></div
+              :date="comment.date"
+            /></div
+        ></b-col>
+      </b-row>
+      <!-- </div> -->
+    </div>
+
+    <b-modal id="modal-sm" size="sm" title="Rating feedback">
+      <div class="">
+        <label for="rating-inline">Reviews:</label>
+        <b-form-rating
+          class=""
+          id="rating-inline reviews"
+          inline
+        ></b-form-rating>
+      </div>
+      <b-form-textarea
+        class="text-dark mt-2 border"
+        id="textarea-no-resize"
+        placeholder="textarea"
+        rows="3"
+        no-resize
+      ></b-form-textarea> </b-modal
   ></b-container>
 </template>
 
@@ -175,9 +211,8 @@ export default {
     NextPage() {
       this.$router.push("/Comment");
     },
-    addUser(index) {
-      alert("alee", index);
-      this.projects[index].users.push({
+    addUser(projectIndex) {
+      this.projects[projectIndex].users.push({
         review: "",
         comments: [
           {
@@ -188,10 +223,8 @@ export default {
         ],
       });
     },
-    removeUser(index) {
-      console.log("alee");
-
-      this.projects[index].users.splice(index);
+    removeUser(projectIndex, userIndex) {
+      this.projects[projectIndex].users.splice(userIndex, 1);
     },
   },
 };
@@ -199,5 +232,12 @@ export default {
 <style scoped>
 .add-icon:focus {
   outline: none !important;
+}
+.user-list {
+  height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px 0;
 }
 </style>

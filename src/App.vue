@@ -15,6 +15,10 @@
   border: none !important;
   color: gold !important;
 }
+.review-rating .b-icon {
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+}
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
